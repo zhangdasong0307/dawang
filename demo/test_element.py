@@ -78,4 +78,26 @@ def test_upload(driver):
 
     sleep(10)
 
-    print('nihao')
+    print('niha')
+
+def test_alert(driver):
+    driver.get("http://192.168.1.128:8082/xuepl/demo.html")
+    sleep(2)
+    button=driver.find_element_by_xpath("/html/body/table/tbody/tr[6]/td[2]/input")
+    button.click()
+    sleep(2)
+    alert=driver.switch_to.alert
+    alert.send_keys("你好你好")
+    alert.accept()
+    sleep(2)
+
+def test_alert1(driver):
+    driver.get("http://192.168.1.128:8082/xuepl/demo.html")
+    sleep(2)
+    button=driver.find_element_by_xpath("/html/body/table/tbody/tr[6]/td[2]/input")
+    button.click()
+    sleep(2)
+    alert=driver.switch_to.alert
+    alert.send_keys("你好你好")
+    alert.dismiss()
+    sleep(2)
