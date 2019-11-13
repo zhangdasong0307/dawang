@@ -6,17 +6,17 @@ from selenium.webdriver.common.keys import Keys
 
 
 def test_input(driver):
-    driver.get("http://ui.yansl.com/#/input")
-    sleep(2)
-    input = driver.find_element_by_xpath("//input[@name='t1']")
+    driver.get("http://ui.yansl.com/#/input")   #打开url
+    sleep(2)  #休息2秒
+    input = driver.find_element_by_xpath("//input[@name='t1']") #定位xpath位置
 #清空
     input.clear()
 #输入
     input.send_keys("写什么？读什么？怎么读？")
     sleep(2)
 
-def test_radio(driver):
-    driver.get("http://ui.yansl.com/#/radio")
+def test_radio(driver):  #定义
+    driver.get("http://ui.yansl.com/#/radio")#打开url
     sleep(2)
     radio=driver.find_element_by_xpath("//input[@name='sex'][2]")
 #点击click
@@ -35,10 +35,10 @@ def test_select(driver):
     sleep(2)
 
     option = driver.find_element_by_xpath("(//span[text()='龙须面'])[last()]")
-    actions=ActionChains(driver)
-    actions.move_to_element(option).perform()
+    actions=ActionChains(driver)   #类的实例化
+    actions.move_to_element(option).perform()    #actions.move_to_element(option)-鼠标移动到元素上（悬浮）perform() 展示
     sleep(2)
-    option.click()
+    option.click()# 点击
     sleep(2)
 
 
@@ -46,7 +46,7 @@ def test_select(driver):
 def test_time(driver):
     driver.get("http://ui.yansl.com/#/dateTime")
     sleep(2)
-    input = driver.find_element_by_xpath("//input[@placeholder='选择时间']")
+    input = driver.find_element_by_xpath("//input[@placeholder='选择时间']")  #定位xpath
 #清空
     input.clear()
 #输入
@@ -108,8 +108,8 @@ def test_windows(driver):
     sleep(2)
 
     dang_dang = driver.find_element_by_link_text("当当")
-    actions = ActionChains(driver)
-    actions.key_down(Keys.CONTROL).click(dang_dang).key_up(Keys.CONTROL).perform()
+    actions = ActionChains(driver)    #导入，鼠标，键盘，都有，26个字母直接输入
+    actions.key_down(Keys.CONTROL).click(dang_dang).key_up(Keys.CONTROL).perform()  #actions.key_down，选择键盘上的按钮，(Keys.CONTROL)选择countrol
     sleep(2)
     jd = driver.find_element_by_link_text("京东")
     actions = ActionChains(driver) #类的实例化
