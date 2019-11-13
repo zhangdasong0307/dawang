@@ -77,3 +77,5 @@ def test_upload(driver):
     autoit.control_click("打开", "Button1")
 
     sleep(10)
+
+    print('nihao')
