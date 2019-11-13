@@ -2,6 +2,7 @@ from time import sleep
 
 import autoit
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 
 def test_input(driver):
@@ -97,7 +98,33 @@ def test_alert1(driver):
     button=driver.find_element_by_xpath("/html/body/table/tbody/tr[6]/td[2]/input")
     button.click()
     sleep(2)
-    alert=driver.switch_to.alert
+    alert=driver.switch_to.alert  #切换弹框
     alert.send_keys("你好你好")
-    alert.dismiss()
+    alert.dismiss()  #取消
     sleep(2)
+
+def test_windows(driver):
+    driver.get("http://192.168.1.128:8082/xuepl/demo.html")
+    sleep(2)
+
+    dang_dang = driver.find_element_by_link_text("当当")
+    actions = ActionChains(driver)
+    actions.key_down(Keys.CONTROL).click(dang_dang).key_up(Keys.CONTROL).perform()
+    sleep(2)
+    jd = driver.find_element_by_link_text("京东")
+    actions = ActionChains(driver) #类的实例化
+    actions.key_down(Keys.CONTROL).click(jd).key_up(Keys.CONTROL).perform() #可以导入键盘上的按键
+    sleep(2)
+    dn = driver.find_element_by_partial_link_text("度娘")
+    actions = ActionChains(driver)
+    actions.key_down(Keys.CONTROL).click(dn).key_up(Keys.CONTROL).perform()
+    sleep(2)
+
+    # 获取所有窗口的句柄
+    handles = driver.window_handles   #列表handles
+    for h in handles:
+        # 根据窗口句柄，切换窗口
+        driver.switch_to.window(h)
+        sleep(2)
+        if driver.title.__contains__("京东"):
+            break     #到京东关闭
