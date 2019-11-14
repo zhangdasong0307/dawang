@@ -1,0 +1,25 @@
+{
+  "uid" : "ab17fc5a4eb3bca4b216b548c7f9fcbc",
+  "name" : "timeline",
+  "children" : [ {
+    "name" : "DESKTOP-2UAMQE7",
+    "children" : [ {
+      "name" : "8612-MainThread",
+      "children" : [ {
+        "name" : "标题",
+        "uid" : "893aefbb0f845691",
+        "parentUid" : "f3a1b4db78b6b70ef47c8a34c2708509",
+        "status" : "passed",
+        "time" : {
+          "start" : 1573724159917,
+          "stop" : 1573724162376,
+          "duration" : 2459
+        },
+        "flaky" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "f3a1b4db78b6b70ef47c8a34c2708509"
+    } ],
+    "uid" : "4a11376b16f86653376f14fd442a2841"
+  } ]
+}

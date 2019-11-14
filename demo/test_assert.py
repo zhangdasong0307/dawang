@@ -1,6 +1,6 @@
 from time import sleep
 
-
+#文本断言
 def test_text(driver):
     driver.get("http://ui.yansl.com/#/message")
     buttons=driver.find_element_by_xpath("//*[@id='form']/form/div[1]/div/button[1]/span")
@@ -10,7 +10,7 @@ def test_text(driver):
     print(text)
     assert "这是一条消息" in text
     sleep(5)
-
+#源代码断言
 def test_page_source(driver):
     driver.get("http://ui.yansl.com/")
     driver.find_element_by_xpath("//*[@id='app']/section/section/aside/ul/li[3]/div").click()
