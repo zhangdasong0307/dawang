@@ -2,7 +2,11 @@ from time import sleep
 
 import autoit
 from selenium.webdriver import ActionChains
+from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC #定义了变量EC表示expected_conditions
 
 
 def test_input(driver):
@@ -157,9 +161,43 @@ def test_iframe(driver):    #定义iframe
     driver.switch_to.default_content()
     sleep(3)
     iframe=driver.find_element_by_xpath('/html/frameset/frameset/frame[2]')  #定位京东xpath
-    driver.switch_to.frame(iframe)
+    driver.switch_to.frame(iframe)   #切换到京东网页
     sleep(3)
-    inpu=driver.find_element_by_xpath('//*[@id="key"]')
+    inpu=driver.find_element_by_xpath('//*[@id="key"]')   #定位xpath，京东的输入框
     inpu.clear()
-    inpu.send_keys("电脑")
+    inpu.send_keys("电脑")  #输入信息
     sleep(3)
+
+
+
+def test_bd(driver):
+    driver.get("https://www.baidu.com/")
+    sleep(3)
+    bdd=driver.find_element_by_xpath('//*[@id="kw"]')
+    bdd.clear()
+    bdd.send_keys("遮天")
+    sleep(3)
+
+#显示等待
+def test_wait(driver):  #定义
+    driver.get("http://ui.yansl.com/#/loading")  #登入网址
+    bt=driver.find_element_by_xpath("//*[@id='form']/form/div[2]/div/button[2]/span")    #找到xpath位置，服务模式
+    bt.click() #点击
+    WebDriverWait(driver, 5, 0.5).until(
+        EC.visibility_of_element_located((By.XPATH, "//*[@id='form']/form/div[1]/div/div/div[3]/table/tbody/tr[2]/td[2]/div"))
+    )   #显示等待 ，((By.ID,'kw')) EC后面跟等待条件
+    bg=driver.find_element_by_xpath("//*[@id='form']/form/div[1]/div/div/div[3]/table/tbody/tr[2]/td[2]/div")
+    #找到path位置，王小虎
+    print(bg.text)#打印文本，王小虎
+    sleep(2)  #等待两秒
+
+#隐示等待
+def test_waitt(driver):  # 定义
+    driver.get("http://ui.yansl.com/#/loading")  # 登入网址
+    bt = driver.find_element_by_xpath("//*[@id='form']/form/div[2]/div/button[2]/span")  # 找到xpath位置，服务模式
+    bt.click()  # 点击
+
+    bg = driver.find_element_by_xpath("//*[@id='form']/form/div[1]/div/div/div[3]/table/tbody/tr[2]/td[2]/div")
+    # 找到path位置，王小虎
+    print(bg.text)  # 打印文本，王小虎
+    sleep(2)  # 等待两秒
