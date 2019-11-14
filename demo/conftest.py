@@ -8,7 +8,7 @@ from selenium import webdriver
 
 
 
-
+#专门用于test_allure
 
 @pytest.fixture(scope='session')
 def driver():
