@@ -128,3 +128,38 @@ def test_windows(driver):
         sleep(2)
         if driver.title.__contains__("京东"):
             break     #到京东关闭
+
+
+def test_alert(driver):
+    driver.get("http://192.168.1.128:8082/xuepl/demo.html")
+    sleep(2)
+    button=driver.find_element_by_xpath("/html/body/table/tbody/tr[6]/td[2]/input")
+    button.click()
+    sleep(2)
+    alert=driver.switch_to.alert
+    alert.send_keys("你好你好")
+    alert.accept()
+    sleep(2)
+
+
+def test_iframe(driver):    #定义iframe
+    driver.get("http://192.168.1.128:8082/xuepl1/frame/main.html") #登入网站
+    sleep(3) #休息3秒
+    frame=driver.find_element_by_xpath("/html/frameset/frameset/frame[1]")# 定位xpath
+    driver.switch_to.frame(frame) #切换到xpath定位
+    sleep(3)  #休息3秒
+    driver.find_element_by_link_text('京东').click()  #按部分文本内容查找京东网站
+    sleep(3)  #休息3秒
+
+#退出当前iframe
+    driver.switch_to.parent_frame()
+    #回到初始页面
+    driver.switch_to.default_content()
+    sleep(3)
+    iframe=driver.find_element_by_xpath('/html/frameset/frameset/frame[2]')  #定位京东xpath
+    driver.switch_to.frame(iframe)
+    sleep(3)
+    inpu=driver.find_element_by_xpath('//*[@id="key"]')
+    inpu.clear()
+    inpu.send_keys("电脑")
+    sleep(3)
